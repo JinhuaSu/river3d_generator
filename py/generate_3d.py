@@ -134,7 +134,7 @@ def river_su(river_array, w, h, ratio_w=0.7, ratio_h=0.3):
             k * 5 + 9,
             k * 5 + 4,
         ]
-    s = ""
+    s = "mtllib demo.mtl\n"
     print(verticesOfRiver, indicesOfRiverFaces)
     for i in range(len(verticesOfRiver) // 3):
         s += "v %s %s %s\n" % (
@@ -142,14 +142,16 @@ def river_su(river_array, w, h, ratio_w=0.7, ratio_h=0.3):
             verticesOfRiver[i * 3 + 1],
             verticesOfRiver[i * 3 + 2],
         )
+    s += "vt 0.0 0.0\nvt 1.0 0.0\nvt 0.0 1.0\nvt 1.0 1.0\nusemtl demo\n"
     for i in range(len(indicesOfRiverFaces) // 6):
-        s += "f %s %s %s %s\n" % (
+        s += "f %s/1 %s/2 %s/3 %s/4\n" % (
             indicesOfRiverFaces[i * 6] + 1,
             indicesOfRiverFaces[i * 6 + 1] + 1,
             indicesOfRiverFaces[i * 6 + 2] + 1,
             indicesOfRiverFaces[i * 6 + 4] + 1,
         )
     print(s)
+
     return s
 
 
